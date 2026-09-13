@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Bomber</title>
+    <!-- Google Fonts for stylish typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            color: #000000;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60px;
+            height: 4px;
+            background-color: #000000;
+            border-radius: 2px;
+            animation: lineExpand 1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .footer-text {
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-weight: 300;
+            color: #555555;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeIn 1s 0.8s forwards;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes lineExpand {
+            to {
+                transform: translateX(-50%) scaleX(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="title">CUSTOM BOMBER</h1>
+        <p class="footer-text">©Th3bunny</p>
+    </div>
+
+    <script>
+        // Optional JS interactive enhancement (Console log or dynamic touch)
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("Custom Bomber initialized successfully by Th3bunny.");
+            
+            // Subtle interactive effect on title hover
+            const title = document.getElementById("title");
+            title.addEventListener("mouseenter", () => {
+                title.style.transition = "transform 0.3s ease";
+                title.style.transform = "scale(1.02)";
+            });
+            title.addEventListener("mouseleave", () => {
+                title.style.transform = "scale(1)";
+            });
+        });
+    </script>
+</body>
+</html>
