@@ -1,0 +1,9 @@
+{
+  "name": "sms-proxy-api",
+  "version": "1.0.0",
+  "description": "Secure SMS API Proxy with Multi-Key Auth",
+  "main": "api/sms.js",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
