@@ -13,9 +13,7 @@ export default async function handler(req, res) {
   const { key, number, count, msg } = req.query;
 
   // --- MULTI-KEY SYSTEM ---
-  // Aap Vercel Environment Variables me 'API_KEYS' set kar sakte ho (comma separated, e.g., bunny,secret123,devkey)
-  // Agar env variable nahi mila toh ye default keys use karega.
-  const defaultKeys = ['bunny', 'codex-bunny'];
+  const defaultKeys = ['bunny03', 'codex-bunny', 'rabbit'];
   const allowedKeys = process.env.API_KEYS 
     ? process.env.API_KEYS.split(',').map(k => k.trim()) 
     : defaultKeys;
@@ -40,11 +38,19 @@ export default async function handler(req, res) {
     // Target API URL construction with proper encoding
     const targetUrl = `https://custom-sms-theta.vercel.app/send-msg?number=${encodeURIComponent(number)}&count=${encodeURIComponent(count)}&msg=${encodeURIComponent(msg)}`;
 
-    // Target API ko request bhejna (Node.js native fetch)
+    // Target API ko request bhejna
     const apiResponse = await fetch(targetUrl);
-    const responseData = await apiResponse.json();
+    let responseData = await apiResponse.json();
 
-    // Success Response Return karna
+    // --- RESPONSES MODIFICATION ---
+    // 1. 'channel' ko remove/delete karna
+    delete responseData.channel;
+
+    // 2. 'owner' aur 'developer' ko change karke apna name/handle set karna
+    responseData.owner = "@th3bunny";
+    responseData.developer = "Somnath Mahanta";
+
+    // Final Success Response Return karna
     return res.status(200).json({
       status: true,
       author: "TH3 BUNNY",
